@@ -9,8 +9,10 @@ var parse = require('../lib/parse'),
 
 
 function getFixture(name) {
-  var fixturePath = path.resolve(__dirname, 'fixtures', name + '.txt');
-  return fs.createReadStream(fixturePath);
+  var fixturePath = path.resolve(__dirname, 'fixtures', name + '.txt'),
+      stream = fs.createReadStream(fixturePath);
+  stream.pause();
+  return stream;
 }
 
 
