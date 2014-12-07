@@ -1,4 +1,4 @@
-# robots-txt-parse
+# robots-txt-parse [![Build Status](https://travis-ci.org/Woorank/robots-txt-parse.svg)](https://travis-ci.org/Woorank/robots-txt-parse)
 
 Streaming robots.txt parser
 
