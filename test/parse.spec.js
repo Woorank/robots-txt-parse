@@ -75,6 +75,8 @@ describe('parser', function () {
       .then(function (parsed) {
         assert.deepPropertyVal(parsed, 'extensions[0].extension', 'sitemap');
         assert.deepPropertyVal(parsed, 'extensions[0].value', '/sitemap.xml');
+        assert.deepPropertyVal(parsed, 'extensions[1].extension', 'sitemap');
+        assert.deepPropertyVal(parsed, 'extensions[1].value', 'http://example.com/alt_sitemap.xml');
         done();
       })
       .catch(done);
