@@ -11,13 +11,12 @@ var parse = require('../lib/parse'),
 function getFixture(name) {
   var fixturePath = path.resolve(__dirname, 'fixtures', name + '.txt'),
       stream = fs.createReadStream(fixturePath);
-  stream.pause();
   return stream;
 }
 
 
 describe('parser', function () {
-  
+
   it('should parse a simple group', function (done) {
     parse(getFixture('single-group'))
       .then(function (parsed) {
@@ -27,49 +26,49 @@ describe('parser', function () {
         assert.lengthOf(parsed.groups, 1);
         var group = parsed.groups[0];
         assert.isObject(group);
-        
+
         assert.property(group, 'agents');
         assert.isArray(group.agents);
         assert.lengthOf(group.agents, 1);
         assert.strictEqual(group.agents[0], '*');
-        
+
         assert.property(group, 'rules');
         assert.isArray(group.rules);
         assert.lengthOf(group.rules, 1);
         var rule = group.rules[0];
-        
+
         assert.isObject(rule);
         assert.propertyVal(rule, 'rule', 'disallow');
         assert.propertyVal(rule, 'path', '/');
-        
+
         done();
       })
       .catch(done);
   });
-  
+
   it('should parse multiple agents', function (done) {
     parse(getFixture('multiple-agents'))
       .then(function (parsed) {
         assert.deepPropertyVal(parsed, 'groups[0].agents[0]', '*');
         assert.deepPropertyVal(parsed, 'groups[0].agents[1]', 'agent1');
         assert.deepPropertyVal(parsed, 'groups[0].agents[2]', 'agent2');
-        
+
         done();
       })
       .catch(done);
   });
-  
+
   it('should ignore group members outside of a group', function (done) {
     parse(getFixture('member-outside'))
       .then(function (parsed) {
         assert.deepPropertyVal(parsed, 'groups[0].agents[0]', '*');
         assert.lengthOf(parsed.groups[0].agents, 1);
-        
+
         done();
       })
       .catch(done);
   });
-  
+
   it('should parse extensions', function (done) {
     parse(getFixture('with-sitemap'))
       .then(function (parsed) {
@@ -81,7 +80,7 @@ describe('parser', function () {
       })
       .catch(done);
   });
-  
+
   it('should parse multiple groups', function (done) {
     parse(getFixture('multiple-groups'))
       .then(function (parsed) {
@@ -99,10 +98,10 @@ describe('parser', function () {
         assert.deepPropertyVal(parsed, 'groups[2].agents[0]', 'agent3');
         assert.deepPropertyVal(parsed, 'groups[2].rules[0].rule', 'disallow');
         assert.deepPropertyVal(parsed, 'groups[2].rules[0].path', '/path3');
-        
+
         done();
       })
       .catch(done);
   });
-  
+
 });
