@@ -1,6 +1,6 @@
 {
   "name": "robots-txt-parse",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Streaming parser for robots.txt files",
   "main": "lib/parse.js",
   "scripts": {
