@@ -1,11 +1,11 @@
 {
   "name": "robots-txt-parse",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Streaming parser for robots.txt files",
   "main": "lib/parse.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Woorank/robots-txt-parse"
+    "type": "git",
+    "url": "https://github.com/Woorank/robots-txt-parse"
   },
   "scripts": {
     "test": "mocha -R spec ./test",
