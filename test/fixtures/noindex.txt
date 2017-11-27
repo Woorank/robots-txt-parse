@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /path1
+Disallow: /*/path2/
+Noindex: /*/path2/
+Noindex: /*/path3/
