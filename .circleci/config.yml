@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  deploy:
     machine:
         enabled: true
     steps:
@@ -15,4 +15,20 @@ jobs:
               npm publish
             fi
 
+  test:
+    machine:
+        enabled: true
+    steps:
+      - checkout
+      - run:
+          name: npm Test
+          command: npm run test
 
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
