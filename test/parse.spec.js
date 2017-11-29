@@ -104,4 +104,25 @@ describe('parser', function () {
       .catch(done);
   });
 
+  it('should parse noindex', function (done) {
+    parse(getFixture('noindex'))
+      .then(function (parsed) {
+        assert.deepPropertyVal(parsed, 'groups[0].agents[0]', '*');
+
+        assert.deepPropertyVal(parsed, 'groups[0].rules[0].rule', 'allow');
+        assert.deepPropertyVal(parsed, 'groups[0].rules[0].path', '/path1');
+
+        assert.deepPropertyVal(parsed, 'groups[0].rules[1].rule', 'disallow');
+        assert.deepPropertyVal(parsed, 'groups[0].rules[1].path', '/*/path2/');
+
+        assert.deepPropertyVal(parsed, 'groups[0].rules[2].rule', 'noindex');
+        assert.deepPropertyVal(parsed, 'groups[0].rules[2].path', '/*/path2/');
+
+        assert.deepPropertyVal(parsed, 'groups[0].rules[3].rule', 'noindex');
+        assert.deepPropertyVal(parsed, 'groups[0].rules[3].path', '/*/path3/');
+        done();
+      })
+      .catch(done);
+  });
+
 });
