@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "mocha -R spec ./test",
-    "test-watch": "mocha -w -R spec ./test"
+    "test-watch": "mocha -w -R spec ./test",
+    "version": "echo $npm_package_version"
   },
   "author": "Jan Potoms",
   "license": "MIT",
