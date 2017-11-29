@@ -1,37 +1,18 @@
 version: 2
 jobs:
-  deploy:
-    machine:
-        enabled: true
+  build:
+    docker:
+      - image: circleci/node:8
     steps:
       - checkout
+      - run: npm install --quiet
+      - run: npm test
       - deploy:
           command: |
-            export PACKAGE_EXISTS="$(npm info robots-txt-parse@$(npm run -s version) version)"
+            export PACKAGE_EXISTS="$(npm info capture-har@$(npm run -s version) version)"
             echo "Existing version: ${PACKAGE_EXISTS}"
             if [ "${CIRCLE_BRANCH}" == "master" ] && [ "${PACKAGE_EXISTS}" == "undefined" ]; then
               echo "Publishing..."
               echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
               npm publish
             fi
-
-  test:
-    machine:
-        enabled: true
-    steps:
-      - checkout
-      - run:
-          name: npm install
-          command: npm install
-      - run:
-          name: npm test
-          command: npm run test
-
-workflows:
-  version: 2
-  test_and_deploy:
-    jobs:
-      - test
-      - deploy:
-          requires:
-            - test
