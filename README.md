@@ -24,6 +24,10 @@ user-agent: twitterbot
 disallow: /
 allow: /twitter
 
+user-agent: mozilla
+disallow: /path
+noindex: /path
+
 Sitemap: http://www.example.com/sitemap.xml
 ```
 produces following output
@@ -39,6 +43,12 @@ produces following output
     "rules": [
       { "rule": "disallow", "path": "/" },
       { "rule": "allow", "path": "/twitter" }
+    ]
+  }, {
+    "agents": [ "mozilla" ],
+    "rules": [
+      { "rule": "disallow", "path": "/path" },
+      { "rule": "noindex", "path": "/path" }
     ]
   }],
   "extensions": [
