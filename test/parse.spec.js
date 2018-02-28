@@ -73,7 +73,7 @@ describe('parser', function () {
     parse(getFixture('with-sitemap'))
       .then(function (parsed) {
         assert.deepPropertyVal(parsed, 'extensions[0].extension', 'sitemap');
-        assert.deepPropertyVal(parsed, 'extensions[0].value', '/sitemap.xml');
+        assert.deepPropertyVal(parsed, 'extensions[0].value', 'http://example.com/sitemap.xml');
         assert.deepPropertyVal(parsed, 'extensions[1].extension', 'sitemap');
         assert.deepPropertyVal(parsed, 'extensions[1].value', 'http://example.com/alt_sitemap.xml');
         done();
@@ -120,6 +120,16 @@ describe('parser', function () {
 
         assert.deepPropertyVal(parsed, 'groups[0].rules[3].rule', 'noindex');
         assert.deepPropertyVal(parsed, 'groups[0].rules[3].path', '/*/path3/');
+        done();
+      })
+      .catch(done);
+  });
+
+  it('should detect wrongly formatted sitemap URLs', function (done) {
+    parse(getFixture('wrong-sitemap-url'))
+      .then(function (parsed) {
+        assert.deepPropertyVal(parsed, 'extensions[0].extension', 'sitemap');
+        assert.deepPropertyVal(parsed, 'extensions[0].error', 'Invalid URL: /folder/sitemap.xml');
         done();
       })
       .catch(done);

@@ -29,6 +29,7 @@ disallow: /path
 noindex: /path
 
 Sitemap: http://www.example.com/sitemap.xml
+Sitemap: /wrong_sitemap.xml
 ```
 produces following output
 ```json
@@ -52,7 +53,8 @@ produces following output
     ]
   }],
   "extensions": [
-    { "extension": "sitemap", "value": "http://www.example.com/sitemap.xml" }
+    { "extension": "sitemap", "value": "http://www.example.com/sitemap.xml" },
+    { "extension": "sitemap", "error": "Invalid URL: /wrong_sitemap.xml" }
   ]
 }
 ```
