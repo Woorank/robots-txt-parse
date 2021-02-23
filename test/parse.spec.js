@@ -1,22 +1,19 @@
-/*global describe, it*/
+/* global describe, it */
 
 'use strict';
 
-var parse = require('../lib/parse'),
-    fs = require('fs'),
-    path = require('path'),
-    assert = require('chai').assert;
+const parse = require('../lib/parse');
+const fs = require('fs');
+const path = require('path');
+const assert = require('chai').assert;
 
-
-function getFixture(name) {
-  var fixturePath = path.resolve(__dirname, 'fixtures', name + '.txt'),
-      stream = fs.createReadStream(fixturePath);
+function getFixture (name) {
+  const fixturePath = path.resolve(__dirname, 'fixtures', name + '.txt');
+  const stream = fs.createReadStream(fixturePath);
   return stream;
 }
 
-
 describe('parser', function () {
-
   it('should parse a simple group', function (done) {
     parse(getFixture('single-group'))
       .then(function (parsed) {
@@ -24,7 +21,7 @@ describe('parser', function () {
         assert.property(parsed, 'groups');
         assert.isArray(parsed.groups);
         assert.lengthOf(parsed.groups, 1);
-        var group = parsed.groups[0];
+        const group = parsed.groups[0];
         assert.isObject(group);
 
         assert.property(group, 'agents');
@@ -35,7 +32,7 @@ describe('parser', function () {
         assert.property(group, 'rules');
         assert.isArray(group.rules);
         assert.lengthOf(group.rules, 1);
-        var rule = group.rules[0];
+        const rule = group.rules[0];
 
         assert.isObject(rule);
         assert.propertyVal(rule, 'rule', 'disallow');
@@ -124,5 +121,4 @@ describe('parser', function () {
       })
       .catch(done);
   });
-
 });
