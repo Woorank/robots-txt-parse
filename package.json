@@ -19,6 +19,8 @@
   "author": "Jan Potoms",
   "license": "MIT",
   "devDependencies": {
+    "@types/split": "^1.0.0",
+    "@types/through": "0.0.30",
     "chai": "^1.9.1",
     "mocha": "^1.18.2",
     "semistandard": "^16.0.0",
