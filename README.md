@@ -5,14 +5,11 @@ Streaming robots.txt parser
 ## usage
 
 ```js
-var parse = require('robots-txt-parse'),
-    fs    = require('fs');
+const parse = require('robots-txt-parse');
+const fs = require('fs');
 
-parse(fs.createReadStream(__dirname + '/robots.txt'))
-  .then(function (robots) {
-    console.log(robots)
-  });
-
+const input = fs.createReadStream(__dirname + '/robots.txt');
+const result = await parse(input);
 ```
 assuming this file
 ```
