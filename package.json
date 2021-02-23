@@ -21,13 +21,12 @@
   "devDependencies": {
     "@types/split": "^1.0.0",
     "@types/through": "0.0.30",
-    "chai": "^1.9.1",
-    "mocha": "^1.18.2",
+    "chai": "^4.3.0",
+    "mocha": "^8.3.0",
     "semistandard": "^16.0.0",
     "typescript": "^4.1.5"
   },
   "dependencies": {
-    "bluebird": "^2.3.5",
     "split": "^0.3.0",
     "stream-combiner": "^0.2.1",
     "through": "^2.3.4"
